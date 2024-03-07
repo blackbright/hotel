@@ -63,42 +63,40 @@
             
                 <div class="col-lg-8">
                     <div class="card">
-                        <form action="{{ route('admin.profile.store')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.pass.update')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Full Name</h6>
+                                    <h6 class="mb-0">รหัสผ่านเก่า</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" name="name" value="{{$profileData->name}}" />
+                                    <input type="password" class="form-control" name="old_pass" id="old_pass" 
+                                    @error('old_pass') is-invalid @enderror/>
+                                    @error('old_pass')<span class="text-danger">{{ "โปรดกรอกรหัสเดิม" }}</span> @enderror
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Email</h6>
+                                    <h6 class="mb-0">รหัสผ่านใหม่</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" name="email" value="{{$profileData->email}}" />
+                                    <input type="password" class="form-control" name="new_pass" id="new_pass" 
+                                    @error('new_pass') is-invalid @enderror/>
+                                    @error('new_pass')<span class="text-danger">{{ "โปรดกรอกรหัสใหม่" }}</span> @enderror
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Phone</h6>
+                                    <h6 class="mb-0">ยืนยันรหัสผ่าน</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" name="phone" value="{{$profileData->phone}}" />
+                                    <input type="password" class="form-control" name="confirm_pass" id="confirm_pass"
+                                    @error('confirm_pass') is-invalid @enderror/>
+                                    @error('confirm_pass')<span class="text-danger">{{ "โปรดกรอกรหัสยืนยัน" }}</span> @enderror
+                                    
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Address</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" name="address" value="{{$profileData->address}}" />
-                                </div>
-                            </div> 
-
 
                             <div class="row">
                                 <div class="col-sm-3"></div>

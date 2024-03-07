@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -63,10 +64,50 @@ class AdminController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
     public function AdminChangePass()
     {
         $id = Auth::user()->id;
         $profileData = User::find($id);
+
         return view('admin.admin_change_pass', compact('profileData'));
+    }
+
+    public function AdminPassUpdate(Request $request)
+    {
+
+        $request->validate([
+            'old_pass' => 'required',
+            'new_pass' => 'required',
+            'confirm_pass' => 'required',
+        ]);
+
+        if ($request->new_pass != $request->confirm_pass) {
+            $notification = [
+                'message' => 'รหัสผ่านใหม่ไม่ตรงกัน',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()->back()->with($notification);
+        }
+
+        if (! Hash::check($request->old_pass, auth::user()->password)) {
+            $notification = [
+                'message' => 'รหัสผ่านเดิมไม่ถูกต้อง',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()->back()->with($notification);
+        }
+
+        User::whereId(Auth::user()->id)->update([
+            'password' => Hash::make($request->new_pass),
+        ]);
+        $notification = [
+            'message' => 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว',
+            'alert-type' => 'success',
+        ];
+
+        return back()->with($notification);
     }
 }

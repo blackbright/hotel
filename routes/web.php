@@ -38,6 +38,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
 
     Route::get('/admin/change/pass', [AdminController::class, 'AdminChangePass'])->name('admin.change.pass');
+    Route::post('/admin/pass/update', [AdminController::class, 'AdminPassUpdate'])->name('admin.pass.update');
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
