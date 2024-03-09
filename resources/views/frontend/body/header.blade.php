@@ -25,8 +25,12 @@
                             <a href="tel:+1-(123)-456-7890">+1 (123) 456 7890</a>
                         </li>
                         <li>
-                            <i class='bx bx-envelope'></i>
-                            <a href="mailto:hello@atoli.com">hello@atoli.com</a>
+                            <i class='bx bx-user-pin'></i>
+                            <a href="{{route('login')}}">ลงชื่อเข้าใช้</a>
+                        </li>
+                        <li>
+                            <i class='bx bx-user-rectangle'></i>
+                            <a href="{{route('register')}}">ลงทะเบียน</a>
                         </li>
                     </ul>
                 </div>

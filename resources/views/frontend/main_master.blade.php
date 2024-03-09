@@ -39,7 +39,7 @@
     <body>
 
         <!-- PreLoader Start -->
-        {{-- <div class="preloader">
+        <div class="preloader">
             <div class="d-table">
                 <div class="d-table-cell">
                     <div class="sk-cube-area">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
         <!-- PreLoader End -->
 
         <!-- Top Header Start -->
